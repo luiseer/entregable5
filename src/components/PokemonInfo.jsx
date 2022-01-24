@@ -1,0 +1,26 @@
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+
+function PokemonInfo({ url }) {
+
+    const [pokeInfo, setPokeInfo] = useState({});
+
+    useEffect(() => {
+      axios.get(url)
+        .then(res => setPokeInfo(res.data))
+    }, [url]);
+
+    console.log(pokeInfo);
+    
+    return (
+        <div>
+            <Link to={`/poke/${pokeInfo.id}`}>
+                <p>{pokeInfo.name}</p>
+            </Link>
+            
+        </div>
+    );
+}
+
+export default PokemonInfo;
