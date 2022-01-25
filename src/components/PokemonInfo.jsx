@@ -11,7 +11,7 @@ function PokemonInfo({ url }) {
         .then(res => setPokeInfo(res.data))
     }, [url]);
 
-    console.log(pokeInfo);
+    // console.log(pokeInfo);
     
     return (
         <div>
