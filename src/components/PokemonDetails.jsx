@@ -16,8 +16,9 @@ const PokemonDetails = () => {
 
     return (
         <div>
-            <h1>Pokem Details</h1>
+            <h1>Pokemon Details</h1>
             <p>Name: {pokemons.name}</p>
+            <img src={pokemons.sprites?.front_default} alt="" />
         </div>
     );
 };
