@@ -18,7 +18,7 @@ const PokemonDetails = () => {
         <div>
             <h1>Pokemon Details</h1>
             <p>Name: {pokemons.name}</p>
-            <img src={pokemons.sprites?.front_default} alt="" />
+            <img src={pokemons.sprites?.front_default} alt="front-default" />
         </div>
     );
 };

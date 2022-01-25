@@ -7,19 +7,21 @@ function PokemonInfo({ url }) {
     const [pokeInfo, setPokeInfo] = useState({});
 
     useEffect(() => {
-      axios.get(url)
-        .then(res => setPokeInfo(res.data))
+        axios.get(url)
+            .then(res => setPokeInfo(res.data))
     }, [url]);
 
     // console.log(pokeInfo);
-    
+
     return (
         <div>
-            <Link to={`/poke/${pokeInfo.id}`}>
-                <p>{pokeInfo.name}</p>
-            </Link>
-            
+            <section className='card'>
+                <Link to={`/poke/${pokeInfo.id}`}>
+                    <p>{pokeInfo.name}</p>
+                </Link>
+            </section>
         </div>
+
     );
 }
 
