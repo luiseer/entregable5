@@ -17,11 +17,11 @@ function PokemonInfo({ url }) {
         <div>
             <section className='card'>
                 <Link to={`/poke/${pokeInfo.id}`}>
-                    <p>{pokeInfo.pokemon}</p>
+                    <img src={pokeInfo.sprites?.other.home.front_default} alt="home-default" />
+                    <p className='text-center'>{pokeInfo.name}</p>
                 </Link>
             </section>
         </div>
-
     );
 }
 

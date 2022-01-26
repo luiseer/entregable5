@@ -1,4 +1,18 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities; 
+@tailwind utilities;
+
+@layer components {
+    .card {
+      background-color: theme('colors.white');
+      border-radius: theme('borderRadius.lg');
+      margin: theme('spacing.3');
+      padding: theme('spacing.9');
+      box-shadow: theme('boxShadow.xl');
+    }
+}
+
+body{
+  background-color: #1DB8DB;
+}
 

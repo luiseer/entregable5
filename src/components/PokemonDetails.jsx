@@ -15,11 +15,14 @@ const PokemonDetails = () => {
 
 
     return (
-        <div>
+        <section>
             <h1>Pokemon Details</h1>
-            <p>Name: {pokemons.name}</p>
-            <img src={pokemons.sprites?.front_default} alt="front-default" />
-        </div>
+            <div className='card'>
+                <img src={pokemons.sprites?.front_default} alt="front-default" />
+                <p>Name: {pokemons.name}</p>
+            </div>
+        </section>
+
     );
 };
 

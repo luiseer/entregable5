@@ -35,9 +35,11 @@ const Pokedex = () => {
     return (
         
         <section>
-            <h1 className='text-6xl'>Pokedex</h1>
-            <p className='text-2xl'>Welcome <span className='text-gray-500'>{name}!</span></p>
-
+            <header className='flex justify-center space-x-5 mt-5'>
+                <h1 className='text-6xl'>Pokedex</h1>
+                <p className='text-2xl mt-5'>Welcome <span className='text-gray-500'>{name}!</span></p>
+            </header>
+    
             <select onChange={e => filterPokemones(e.target.value)}>
                 {
                     types.map(type => (
