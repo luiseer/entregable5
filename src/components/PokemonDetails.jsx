@@ -20,6 +20,9 @@ const PokemonDetails = () => {
             <div className='card'>
                 <img src={pokemons.sprites?.front_default} alt="front-default" />
                 <p>Name: {pokemons.name}</p>
+                <p>Weight: {pokemons.weight}</p>
+                <p>Type: {pokemons?.types[0].name}</p>
+                <p></p>
             </div>
         </section>
 
