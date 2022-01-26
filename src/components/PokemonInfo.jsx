@@ -17,7 +17,7 @@ function PokemonInfo({ url }) {
         <div>
             <section className='card'>
                 <Link to={`/poke/${pokeInfo.id}`}>
-                    <p>{pokeInfo.name}</p>
+                    <p>{pokeInfo.pokemon}</p>
                 </Link>
             </section>
         </div>

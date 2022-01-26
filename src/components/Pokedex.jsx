@@ -26,20 +26,26 @@ const Pokedex = () => {
             .then(res => setTypes(res.data.results))
     }, []);
 
-    // console.log(types);
+    const filterPokemones = id => {
+        console.log(id);
+    }
+
     console.log(pokemon);
 
     return (
+        
         <section>
             <h1 className='text-6xl'>Pokedex</h1>
             <p className='text-2xl'>Welcome <span className='text-gray-500'>{name}!</span></p>
-            <select onChange={e => console.log(e.target.value)} name="" id="">
+
+            <select onChange={e => filterPokemones(e.target.value)}>
                 {
                     types.map(type => (
                         <option key={type.url}>{type.name}</option>
                     ))
                 } 
             </select>
+
             <main className='display: grid grid-cols-4 '>
                 {
                     pokemon.map(poke => (

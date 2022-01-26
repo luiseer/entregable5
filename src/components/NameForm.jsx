@@ -20,13 +20,14 @@ const NameForm = () => {
         <label>
           <div>Coloca tu nombre</div>
           <input
-          className="border border-black"
+            className="border border-black"
             type="text"
+            placeholder="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
         </label>
-        <button><i className=" text-red-500 text-2xl fas fa-arrow-right"></i></button>
+        <button className="text-2xl"><i className="fab fa-react"></i></button>
       </form>
     </section>
   );
