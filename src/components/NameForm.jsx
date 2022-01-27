@@ -27,7 +27,7 @@ const NameForm = () => {
             onChange={(e) => setName(e.target.value)}
           />
         </label>
-        <button className="text-2xl"><i className="fab fa-react"></i></button>
+        <button><img src="./src/img/pokeball.png" alt="poke-ball" className="animate-spin w-8 h-8" /></button>
       </form>
     </section>
   );

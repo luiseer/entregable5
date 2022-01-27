@@ -13,6 +13,8 @@
 }
 
 body{
-  background-color: #1DB8DB;
+  background-image: url(./img/pokemon-in-the-wild.webp);
+  background-repeat: repeat-y;
+  background-size: 100%;
 }
 
