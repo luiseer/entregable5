@@ -13,6 +13,8 @@ const PokemonDetails = () => {
             .then(res => setPokemons(res.data))
     }, [id]);
 
+    console.log(pokemons.types?.map(type => type.url));
+
 
     return (
         <section>
@@ -21,8 +23,7 @@ const PokemonDetails = () => {
                 <img src={pokemons.sprites?.front_default} alt="front-default" />
                 <p>Name: {pokemons.name}</p>
                 <p>Weight: {pokemons.weight}</p>
-                <p>Type: {pokemons?.types[0].name}</p>
-                <p></p>
+                <p>Height: {pokemons.height}</p>
             </div>
         </section>
 
