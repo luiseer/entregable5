@@ -29,8 +29,9 @@ const Pokedex = () => {
 
 
 
-    const filterPokemones = id => {
-        console.log(id);
+    const filterPokemones = url => {
+        axios.get(url)
+            .then(res => setPokemon(res.data.pokemon))
     }
 
     console.log(pokemon);
@@ -46,7 +47,7 @@ const Pokedex = () => {
             <select className='text-black m-5 w-52 border-2 uppercase' onChange={e => filterPokemones(e.target.value)}>
                 {
                     types.map(type => (
-                        <option key={type.url}>{type.name}</option>
+                        <option key={type.url} value={type.url}>{type.name}</option>
                     ))
                 }
             </select>
@@ -54,8 +55,8 @@ const Pokedex = () => {
             <main className='display: grid grid-cols-1 md:grid-cols-4'>
                 {
                     pokemon.map(poke => (
-                        <p key={poke.name}>
-                            <PokemonInfo url={poke?.url} />
+                        <p key={poke.name ? poke.name : poke.pokemon.name}>
+                            <PokemonInfo url={poke.url ? poke.url : poke.pokemon.url} />
                         </p>
                     ))
                 }
