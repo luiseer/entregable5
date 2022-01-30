@@ -2,19 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@layer base {
+  h1 {
+    @apply text-2xl;
+  }
+  h2 {
+    @apply text-xl;
+  }
+  h3 {
+    @apply text-lg;
+  }
+}
+
 @layer components {
-    .card {
-      background-color: theme('colors.white');
-      border-radius: theme('borderRadius.lg');
-      margin: theme('spacing.3');
-      padding: theme('spacing.9');
-      box-shadow: theme('boxShadow.xl');
-    }
+  .card {
+    background-color: theme('colors.white');
+    border-radius: theme('borderRadius.lg');
+    margin: theme('spacing.3');
+    padding: theme('spacing.9');
+    box-shadow: theme('boxShadow.xl');
+  }
+  .btn-primary {
+    @apply py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75;
+  }
 }
 
 body{
   background-image: url(./img/pokemon-in-the-wild.webp);
-  background-repeat: repeat-y;
-  background-size: 100%;
+  background-repeat: no-repeat;
+  background-size: 111vw 118vh;
+  font-family: 'Zen Kurenaido', sans-serif;
 }
 

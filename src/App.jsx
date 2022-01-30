@@ -15,7 +15,6 @@ function App() {
     <HashRouter>
       <Routes>
         <Route path="/" element={<NameForm/>}/>
-
         <Route element={<ProtectedRoutes/>}>
           <Route path="/poke" element={<Pokedex/>}/>
           <Route path="/poke/:id" element={<PokemonDetails/>}/>

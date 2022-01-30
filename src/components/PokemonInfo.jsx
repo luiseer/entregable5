@@ -4,23 +4,33 @@ import { Link } from 'react-router-dom';
 
 function PokemonInfo({ url }) {
 
-    const [pokeInfo, setPokeInfo] = useState({});
+    const [pokeInfo, setPokeInfo] = useState({
+        stats: [],
+        types: [],
+        abilities: [],
+        moves: []
+    });
 
     useEffect(() => {
         axios.get(url)
             .then(res => setPokeInfo(res.data))
     }, [url]);
 
-    // console.log(pokeInfo);
+    console.log(pokeInfo.types[0]);
 
     return (
         <div>
-            <section className='card'>
+            <div className='card static'>
                 <Link to={`/poke/${pokeInfo.id}`}>
-                    <img src={pokeInfo.sprites?.other.home.front_default} alt="home-default" />
                     <p>Name: {pokeInfo.name}</p>
+                    <p>Types: {pokeInfo?.types[1]?.type?.name ? pokeInfo?.types[0]?.type?.name : pokeInfo?.types[1]?.type?.name}</p>
+                    <p>Hp: {pokeInfo.stats[0]?.base_stat}</p>
+                    <p>Attack: {pokeInfo.stats[1]?.base_stat}</p>
+                    <p>Defense:{pokeInfo.stats[2]?.base_stat}</p>
+                    <p>Speed: {pokeInfo.stats[5]?.base_stat}</p>
+                    <img src={pokeInfo.sprites?.other.home.front_default} alt="home-default" />
                 </Link>
-            </section>
+            </div>
         </div>
     );
 }
