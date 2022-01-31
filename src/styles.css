@@ -39,6 +39,15 @@
     padding: theme('spacing.8');
     box-shadow: theme('boxShadow.xl');
   }
+  .card-moves{
+    background-color: theme('colors.poke-orange');
+    border-radius: theme('borderRadius.xl');
+    margin: theme('spacing.8');
+    padding: theme('spacing.8');
+    box-shadow: theme('boxShadow.xl');
+    width: 150px;
+    height: auto;
+  }
   .btn-primary {
     @apply py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75;
   }
@@ -56,7 +65,7 @@ body{
   background-image: url(./img/pokemon-in-the-wild.webp);
   background-size: cover;
   background-position: top;
-  background-repeat: no-repeat;
+  background-repeat: repeat-y;
   font-family: 'Zen Kurenaido', sans-serif;
 }
 
