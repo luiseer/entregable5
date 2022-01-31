@@ -16,14 +16,24 @@ function PokemonInfo({ url }) {
             .then(res => setPokeInfo(res.data))
     }, [url]);
 
-    console.log(pokeInfo.types[0]);
+    console.log(pokeInfo.types.map(type => type.type.name));
 
     return (
-        <div>
-            <div className='card static'>
+            <div className='card'>
                 <Link to={`/poke/${pokeInfo.id}`}>
                     <p>Name: {pokeInfo.name}</p>
-                    <p>Types: {pokeInfo?.types[1]?.type?.name ? pokeInfo?.types[0]?.type?.name : pokeInfo?.types[1]?.type?.name}</p>
+                    {
+                        pokeInfo.types.map(type => (
+                            <p key={type.type.name}>Type: {type.type.name}</p>
+                        ))
+                    } 
+                    {/* <p>Types: {pokeInfo.types[0]?.type.name ? pokeInfo.types[0]?.type.name: 
+                    
+                        pokeInfo.types.map(type => (
+                            <p key={type.type.name}>Type: {type.type.name}</p>
+                        ))
+                    
+                    }</p> */}
                     <p>Hp: {pokeInfo.stats[0]?.base_stat}</p>
                     <p>Attack: {pokeInfo.stats[1]?.base_stat}</p>
                     <p>Defense:{pokeInfo.stats[2]?.base_stat}</p>
@@ -31,7 +41,7 @@ function PokemonInfo({ url }) {
                     <img src={pokeInfo.sprites?.other.home.front_default} alt="home-default" />
                 </Link>
             </div>
-        </div>
+        
     );
 }
 

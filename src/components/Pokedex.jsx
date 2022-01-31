@@ -14,6 +14,8 @@ const Pokedex = () => {
     const [page, setPage] = useState(1)
     const navigate = useNavigate()
 
+
+    //consume todos los pokemon
     useEffect(() => {
         axios.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=1117')
             .then(res => setPokemon(res.data.results))
@@ -25,7 +27,7 @@ const Pokedex = () => {
     //          .then(res => setPokemon(res.data.results))
     //  }, []);
 
-
+    //consume por type
     useEffect(() => {
         axios.get('https://pokeapi.co/api/v2/type/')
             .then(res => setTypes(res.data.results))
@@ -46,8 +48,8 @@ const Pokedex = () => {
     const PerPage = 8
     const lastIndex = page * PerPage//pagina 1 indice 4
     const firstIndex = lastIndex - PerPage//pagina 1 indice 0 
-    const paginated = pokemon.slice(firstIndex, lastIndex) //metodo slice para paginar
-    const totalPages = Math.ceil(pokemon.length / PerPage)
+    const paginated = pokemon.slice(firstIndex, lastIndex) //metodo slice para paginar corta el array
+    const totalPages = Math.ceil(pokemon.length / PerPage) //redondea para la paginacion
 
     let pagesNumbers = []
 
@@ -64,41 +66,42 @@ const Pokedex = () => {
 
     return (
 
-
-
-
         <section className='md:container md:mx-auto sm:mx-auto'>
 
-
-
-
-            <header className='flex justify-center space-x-5 mt-5'>
-                <h1 className='text-6xl text-red-600'>Pokedex</h1>
-                <p className='text-2xl mt-5'>Welcome <span className='text-gray-500'>{name}!</span></p>
+            <header className='flex justify-center space-x-5 mt-5 m-3'>
+                <h1 className='text-6xl'>Pokedex,</h1>
+                <p className='text-2xl mt-5'>Welcome <span className='text-poke-red uppercase text-3xl'>{name}!</span> enjoy your visit</p>
             </header>
 
-            <select className='text-black m-5 w-52 border-2 uppercase' onChange={e => filterPokemones(e.target.value)}>
-                {
-                    types.map(type => (
-                        <option key={type.url} value={type.url}>{type.name}</option>
-                    ))
-                }
-            </select>
+            <div>
+                <select className='text-black m-5 w-52 border-2 rounded-md' onChange={e => filterPokemones(e.target.value)}>
 
-            <input
-                placeholder='pokemon name or number'
-                type="text"
-                value={pokemonSearch}
-                onChange={e => setpokemonSearch(e.target.value)}
-            />
-            <button onClick={search} className='btn-primary'>Submit</button>
+                    {
+                        types.map(type => (
+                            <option key={type.url} value={type.url}>{type.name}</option>
+                        ))
+                    }
 
-            <main className='display: grid grid-cols-1 md:grid-cols-4'>
+                </select>
+            </div>
+
+            <div className='flex justify-center m-3'>
+                <input
+                    className='rounded-md'
+                    placeholder='name or id'
+                    type="text"
+                    value={pokemonSearch}
+                    onChange={e => setpokemonSearch(e.target.value)}
+                />
+                <button onClick={search} className='btn-primary'>Submit</button>
+            </div>
+
+            <main className='display: grid content-center grid-cols-1 md:grid-cols-2 lg:grid-cols-4 m-0'>
                 {
                     paginated.map(poke => (
-                        <p key={poke.name ? poke.name : poke.pokemon.name}>
+                        <div className='flex justify-center' key={poke.name ? poke.name : poke.pokemon.name}>
                             <PokemonInfo url={poke.url ? poke.url : poke.pokemon.url} />
-                        </p>
+                        </div>
                     ))
                 }
             </main>
@@ -106,7 +109,7 @@ const Pokedex = () => {
             <div className='flex justify-around'>
                 {
                     page !== 1 && (
-                        <button className='btn-primary' onClick={() => setPage(page - 1)}>Previus</button>
+                        <button className='btn-primary m-10' onClick={() => setPage(page - 1)}>Previus</button>
                     )
                 }
 
@@ -115,13 +118,13 @@ const Pokedex = () => {
                     pagesNumbers.map(number => <button key={number} onClick={() => setPage(number)}>{number}</button>)
                 } */}
 
-                <div>
+                <div className='m-10'>
                     {page} / {totalPages}
                 </div>
 
                 {
                     page !== totalPages && (
-                        <button className='btn-primary' onClick={() => setPage(page + 1)}>Next</button>
+                        <button className='btn-primary m-10' onClick={() => setPage(page + 1)}>Next</button>
                     )
                 }
             </div>

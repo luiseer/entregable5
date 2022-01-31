@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   h1 {
     @apply text-2xl;
@@ -18,9 +17,26 @@
 @layer components {
   .card {
     background-color: theme('colors.white');
-    border-radius: theme('borderRadius.lg');
-    margin: theme('spacing.3');
-    padding: theme('spacing.9');
+    border-radius: theme('borderRadius.xl');
+    margin: theme('spacing.8');
+    padding: theme('spacing.8');
+    box-shadow: theme('boxShadow.xl');
+    width: 200px;
+    height: 280px;
+  }
+  .card-detail{
+    background-color: theme('colors.poke-blue');
+    border-radius: theme('borderRadius.xl');
+    padding: theme('spacing.1');
+    box-shadow: theme('boxShadow.xl');
+    width: 510px;
+    height: 380px;
+  }
+  .card-atributes{
+    background-color: theme('colors.poke-orange');
+    border-radius: theme('borderRadius.xl');
+    margin: theme('spacing.8');
+    padding: theme('spacing.8');
     box-shadow: theme('boxShadow.xl');
   }
   .btn-primary {
@@ -28,10 +44,38 @@
   }
 }
 
+html {
+  box-sizing: border-box; /*Hack para box model*/
+  scroll-snap-type: y mandatory;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 body{
   background-image: url(./img/pokemon-in-the-wild.webp);
+  background-size: cover;
+  background-position: top;
   background-repeat: no-repeat;
-  background-size: 111vw 118vh;
   font-family: 'Zen Kurenaido', sans-serif;
 }
 
+
+progress {
+  border: none;
+  border-radius: 2rem;
+  width: 100%;
+  height: 9px;
+  animation: prog 2s linear;
+  }
+  
+  ::-webkit-progress-bar-value {background-color: #1DA1F2; border-radius: 2rem;}
+  ::-webkit-progress-value {background-color: #1DA1F2; border-radius: 2rem;}
+  ::-moz-progress-bar {background-color: #1DA1F2; border-radius: 2rem;}
+   
+  @keyframes progres {
+    0% {width: 0%; background-color: #f1f1f1;}
+    100% {width: 100%; color: #000;}
+  }
+  
+  

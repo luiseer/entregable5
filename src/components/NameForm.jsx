@@ -14,7 +14,7 @@ const NameForm = () => {
   };
 
   return (
-    <section>
+    <section className="content-center">
       <h1>Pokemon</h1>
       <form onSubmit={submit}>
         <label>
