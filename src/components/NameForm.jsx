@@ -20,7 +20,7 @@ const NameForm = () => {
         <img className='w-90 h-60' src="src/img/Pokemon-Logo.png" alt="poke-logo"/>
         </div>
         <div>
-          <img src="../img/trainer_3d.png" alt="trainer-3d" className="h-50 w-56 ml-12" />
+          <img src="../src/img/trainer_3d.png" alt="trainer-3d" className="h-50 w-56 ml-12" />
         </div>
         <form onSubmit={submit}>
           <label>
