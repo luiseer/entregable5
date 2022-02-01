@@ -14,22 +14,29 @@ const NameForm = () => {
   };
 
   return (
-    <section className="content-center">
-      <h1>Pokemon</h1>
-      <form onSubmit={submit}>
-        <label>
-          <div>Coloca tu nombre</div>
-          <input
-            className="border border-black"
-            type="text"
-            placeholder="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </label>
-        <button><img src="./src/img/pokeball.png" alt="poke-ball" className="animate-spin w-8 h-8" /></button>
-      </form>
-    </section>
+    <header className="flex h-screen justify-center items-center mb-20">
+      <div className="">
+        <div>
+        <img className='w-90 h-60' src="src/img/Pokemon-Logo.png" alt="poke-logo"/>
+        </div>
+        <div>
+          <img src="src/img/trainer_3d.png" alt="trainer-3d" className="h-50 w-56 ml-12" />
+        </div>
+        <form onSubmit={submit}>
+          <label>
+            <div>Coloca tu nombre</div>
+            <input
+              className="border border-black"
+              type="text"
+              placeholder="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </label>
+          <button><img src="./src/img/pokeball.png" alt="poke-ball" className="animate-spin w-8 h-8" /></button>
+        </form>
+      </div>
+    </header>
   );
 };
 

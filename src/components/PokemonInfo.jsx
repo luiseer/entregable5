@@ -16,7 +16,6 @@ function PokemonInfo({ url }) {
             .then(res => setPokeInfo(res.data))
     }, [url]);
 
-    console.log(pokeInfo.types.map(type => type.type.name));
 
     return (
             <div className='card'>
@@ -46,3 +45,5 @@ function PokemonInfo({ url }) {
 }
 
 export default PokemonInfo;
+
+

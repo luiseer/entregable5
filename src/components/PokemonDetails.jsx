@@ -18,14 +18,11 @@ const PokemonDetails = () => {
             .then(res => setPokemons(res.data))
     }, [id]);
 
-    console.log(pokemons.moves.map(move => move.move.name));
-    //pokemons.sprites.master.sprites.pokemon.other.dream-world
-
 
     return (
         <main className='contenedor relative'>
             <header>
-                <img className='w-90 h-60 ' src="src/img/Pokemon-Logo.png" alt="poke-logo" />
+                <img className='w-90 h-60 ' src="src/img/Pokemon-Logo.png" alt="poke-logo"/>
                 <p className='text-center text-5xl uppercase mb-5'>{pokemons.name}</p>
                         <div className='card-moves text-center border-2 absolute top-10 right-0 opacity-80'>
                             <h2>Movements</h2>
@@ -43,7 +40,7 @@ const PokemonDetails = () => {
             <section className='card-detail m-auto opacity-75 w-1/2 md:w-9/12 h-full md:h-auto'>
 
                 <div>
-                    <img className='m-auto' src={pokemons.sprites?.other.dream_world.front_default} alt="dream-world-front-default" />  
+                    <img className='m-auto' src={pokemons.sprites?.other.dream_world.front_default ? pokemons.sprites?.other.dream_world.front_default : pokemons.sprites?.front_default} alt="dream-world-front-default" />  
                 </div>
         
                 <div className='flex justify-around'>
