@@ -20,8 +20,6 @@ const Pokedex = () => {
         axios.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=1117')
             .then(res => setPokemon(res.data.results))
     }, []);
-
-
     //  useEffect(() => {
     //      axios.get('https://pokeapi.co/api/v2/pokemon/')
     //          .then(res => setPokemon(res.data.results))
