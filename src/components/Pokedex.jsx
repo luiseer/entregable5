@@ -31,8 +31,6 @@ const Pokedex = () => {
             .then(res => setTypes(res.data.results))
     }, []);
 
-
-
     const filterPokemones = url => {
         axios.get(url)
             .then(res => setPokemon(res.data.pokemon))
@@ -56,7 +54,6 @@ const Pokedex = () => {
         pagesNumbers.push(i)
 
     }
-
 
     return (
 
