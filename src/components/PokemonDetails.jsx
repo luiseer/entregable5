@@ -28,7 +28,7 @@ const PokemonDetails = () => {
     return (
         <main className='contenedor relative'>
             <header>
-                <img className='w-90 h-60 ' src="src/img/Pokemon-Logo.png" alt="poke-logo" />
+                <img className='w-90 h-60 ' src="../src/img/Pokemon-Logo.png" alt="poke-logo" />
                 <p className='text-center text-5xl uppercase mb-5'>{pokemons.name}</p>
             </header>
             <section className='card-detail m-auto opacity-75 w-1/2 md:w-9/12 h-full md:h-auto'>
