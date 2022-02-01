@@ -57,10 +57,6 @@ const Pokedex = () => {
 
     }
 
-    console.log(pagesNumbers);
-    console.log(totalPages);
-    console.log(paginated);
-    console.log(pokemon);
 
     return (
 
@@ -104,7 +100,7 @@ const Pokedex = () => {
                 }
             </main>
 
-            <div className='flex justify-around'>
+            <div className='flex justify-around m-0'>
                 {
                     page !== 1 && (
                         <button className='btn-primary m-10' onClick={() => setPage(page - 1)}>Previus</button>
