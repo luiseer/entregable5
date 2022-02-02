@@ -82,7 +82,7 @@ const PokemonDetails = () => {
                         <div>
                             <p className='bg-poke-purple opacity-80 text-white rounded-sm border-2'>Hp</p>
                         </div>
-                        <div className='ml-2'>
+                        <div className='ml-2 w-9/12'>
                             <progress max="150" value={pokemons.stats[0]?.base_stat}></progress>
                         </div>
                     </div>
@@ -90,7 +90,7 @@ const PokemonDetails = () => {
                         <div>
                             <p className='bg-poke-purple opacity-80 text-white rounded-sm border-2 m-1'>Attack</p>
                         </div>
-                        <div className='ml-2'>
+                        <div className='ml-2 w-9/12'>
                             <progress max="150" value={pokemons.stats[1]?.base_stat}></progress>
                         </div>
 
@@ -99,7 +99,7 @@ const PokemonDetails = () => {
                         <div>
                             <p className='bg-poke-purple opacity-80 text-white rounded-sm border-2'>Defense</p>
                         </div>
-                        <div className='ml-2'>
+                        <div className='ml-2 w-9/12'>
                             <progress max="150" value={pokemons.stats[2]?.base_stat}></progress>
                         </div>
 
@@ -108,7 +108,7 @@ const PokemonDetails = () => {
                         <div>
                             <p className='bg-poke-purple opacity-80 text-white rounded-sm border-2 m-1'>Speed</p>
                         </div>
-                        <div className='ml-2'>
+                        <div className='ml-2 w-9/12'>
                             <progress max="150" value={pokemons.stats[5]?.base_stat}></progress>
                         </div>
 
