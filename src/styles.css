@@ -63,8 +63,8 @@ html {
 
 body{
   background-image: url(./img/pokemon-in-the-wild.webp);
-  background-size: cover;
   background-position: center center;
+  background-size: 200%;
   background-repeat: no-repeat;
   font-family: 'Zen Kurenaido', sans-serif;
 }
