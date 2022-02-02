@@ -61,7 +61,7 @@ const Pokedex = () => {
 
             <header className='flex justify-center space-x-5 mt-5 m-3'>
                 <h1 className='text-6xl'>Pokedex,</h1>
-                <p className='text-2xl mt-5'>Welcome <span className='text-poke-red uppercase text-3xl'>{name}!</span> enjoy your visit</p>
+                <p className='text-2xl mt-5'>Welcome <span className='text-poke-purple uppercase text-3xl'>{name}!</span> enjoy your visit</p>
             </header>
 
             <div>
@@ -109,7 +109,7 @@ const Pokedex = () => {
                     pagesNumbers.map(number => <button key={number} onClick={() => setPage(number)}>{number}</button>)
                 } */}
 
-                <div className='m-10'>
+                <div className='m-10 w-24 text-center h-8 bg-poke-purple opacity-80 text-white rounded-sm border-2'>
                     {page} / {totalPages}
                 </div>
 
