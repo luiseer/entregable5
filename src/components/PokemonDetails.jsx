@@ -23,7 +23,6 @@ const PokemonDetails = () => {
             .then(res => console.log(res.data))
     }
 
-    console.log(pokemons.moves.slice(1,9).map(move => move.move.name));
 
     return (
         <main className='contenedor relative'>
@@ -39,9 +38,9 @@ const PokemonDetails = () => {
 
                 <div className='flex justify-around'>
                     <p>Weight: {pokemons.weight}</p>
-                    <p>Height: {pokemons.height}</p>
+                    <p>Height: {pokemons.height}</p> 
                 </div>
-                <div className='flex justify-center border-2'>
+                <div className='flex justify-center border-2 m-10 mb-5'>
                     <p># {pokemons.id}</p>
                 </div>
             </section>
