@@ -24,7 +24,7 @@ const NameForm = () => {
         </div>
         <form onSubmit={submit}>
           <label>
-            <div>Coloca tu nombre</div>
+            <div className="text-4xl ">Put your name Trainer</div>
             <input
               className="border border-black"
               type="text"

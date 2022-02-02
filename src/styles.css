@@ -63,9 +63,9 @@ html {
 
 body{
   background-image: url(./img/pokemon-in-the-wild.webp);
-  background-position: center center;
-  background-size: 200%;
-  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  background-repeat: repeat-y;
   font-family: 'Zen Kurenaido', sans-serif;
 }
 
