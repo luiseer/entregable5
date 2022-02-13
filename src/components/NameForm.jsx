@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { trainer_3d } from "../img";
+import { PokemonLogo, trainer_3d } from "../img";
 
 const NameForm = () => {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const NameForm = () => {
     <header className="flex h-screen justify-center items-center mb-20">
       <div className="">
         <div>
-        <img className='w-90 h-60' src="../src/img/Pokemon-Logo.png" alt="poke-logo"/>
+        <img className='w-90 h-60' src={PokemonLogo} alt="poke-logo"/>
         </div>
         <div>
           <img src={trainer_3d} alt="trainer-3d" className="h-50 w-56 ml-12" />
