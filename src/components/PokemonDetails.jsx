@@ -1,9 +1,11 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { PokemonLogo } from '../img';
+import { getTypeColor } from '../utils/typeColors';
 
 const PokemonDetails = () => {
+    const navigate = useNavigate()
 
     const [pokemons, setPokemons] = useState({
         stats: [],
@@ -19,105 +21,129 @@ const PokemonDetails = () => {
             .then(res => setPokemons(res.data))
     }, [id]);
 
-    const filterMoves = url => {
-        axios.get(url)
-            .then(res => console.log(res.data))
-    }
-
+    const primaryType = pokemons.types[0]?.type.name
+    const color = getTypeColor(primaryType)
 
     return (
-        <main className='contenedor relative'>
-            <header>
-                <img className='w-90 h-60 ' src={PokemonLogo} alt="poke-logo" />
-                <p className='text-center text-5xl uppercase mb-5'>{pokemons.name}</p>
+        <main className='min-h-screen flex flex-col items-center p-4'>
+            <header className='w-full max-w-6xl flex items-center justify-between mb-4'>
+                <button
+                    onClick={() => navigate(-1)}
+                    className='text-white border border-white/30 rounded-full px-4 py-1 hover:bg-white/10 transition'
+                >
+                    ← Volver
+                </button>
+                <img className='h-12' src={PokemonLogo} alt="poke-logo" />
             </header>
-            <section className='card-detail m-auto opacity-75 w-1/2 md:w-9/12 h-full md:h-auto'>
 
-                <div>
-                    <img className='m-auto' src={pokemons.sprites?.other.dream_world.front_default ? pokemons.sprites?.other.dream_world.front_default : pokemons.sprites?.front_default} alt="dream-world-front-default" />
+            <div className='w-full max-w-2xl bg-white/10 backdrop-blur-md rounded-3xl p-8 shadow-2xl'>
+                <div className='text-center mb-6'>
+                    <h1 className='text-4xl font-bold text-white uppercase mb-2'>{pokemons.name}</h1>
+                    <div className='flex justify-center gap-2'>
+                        {pokemons.types?.map(type => (
+                            <span
+                                key={type.type.name}
+                                className='text-xs font-mono uppercase rounded-full px-3 py-1 bg-white/20 text-white'
+                            >
+                                {type.type.name}
+                            </span>
+                        ))}
+                    </div>
                 </div>
 
-                <div className='flex justify-around'>
+                <div
+                    className='rounded-2xl p-6 mb-6 flex justify-center'
+                    style={{ backgroundColor: color.bg }}
+                >
+                    <img
+                        className='h-48 drop-shadow-lg'
+                        src={pokemons.sprites?.other.dream_world.front_default
+                            ? pokemons.sprites?.other.dream_world.front_default
+                            : pokemons.sprites?.front_default}
+                        alt={pokemons.name}
+                    />
+                </div>
+
+                <div className='flex justify-center gap-8 text-white mb-6'>
                     <p>Weight: {pokemons.weight}</p>
-                    <p>Height: {pokemons.height}</p> 
-                </div>
-                <div className='flex justify-center border-2 m-10 mb-5'>
+                    <p>Height: {pokemons.height}</p>
                     <p># {pokemons.id}</p>
                 </div>
-            </section>
 
-            <section className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 mt-5'>
-                <div className='card-atributes flex flex-col text-center border-4'>
-                    <h2>Types</h2>
-                    {
-                        pokemons.types?.map(type => (
-                            <p className='bg-poke-purple opacity-80 text-white rounded-sm border-2 m-1' key={type.type.name}>{type.type.name}</p>
-                        ))
-                    }
-                </div>
-                <div className='card-atributes flex flex-col text-center border-4'>
-                    <h2>Abilities</h2>
-                    {
-                        pokemons.abilities?.map(ability => (
-                            <p className='bg-poke-purple opacity-80 text-white rounded-sm border-2 m-1' key={ability.ability.name}>{ability.ability.name}</p>
-                        ))
-                    }
-                </div>
-                <div className='card-atributes text-center border-4'>
-                    <h2>Movements</h2>
-                    {
-                        
-                        pokemons.moves.slice(0,5).map(move => (
-                            <ol key={move.move.name}>
-                                <li className='bg-poke-purple opacity-80 text-white rounded-sm border-2 m-1'>
+                <section className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+                    <div className='bg-white rounded-2xl p-4 shadow-lg' style={{ borderTop: `4px solid ${color.bg}` }}>
+                        <h2 className='font-bold text-lg mb-2 text-center'>Types</h2>
+                        <div className='flex flex-wrap justify-center gap-1'>
+                            {pokemons.types?.map(type => (
+                                <span
+                                    key={type.type.name}
+                                    className='text-xs font-mono uppercase rounded-full px-3 py-1 text-white'
+                                    style={{ backgroundColor: color.bg }}
+                                >
+                                    {type.type.name}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className='bg-white rounded-2xl p-4 shadow-lg' style={{ borderTop: `4px solid ${color.bg}` }}>
+                        <h2 className='font-bold text-lg mb-2 text-center'>Abilities</h2>
+                        <div className='flex flex-wrap justify-center gap-1'>
+                            {pokemons.abilities?.map(ability => (
+                                <span
+                                    key={ability.ability.name}
+                                    className='text-xs font-mono rounded-full px-3 py-1 text-white'
+                                    style={{ backgroundColor: color.bg }}
+                                >
+                                    {ability.ability.name}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className='bg-white rounded-2xl p-4 shadow-lg' style={{ borderTop: `4px solid ${color.bg}` }}>
+                        <h2 className='font-bold text-lg mb-2 text-center'>Movements</h2>
+                        <div className='flex flex-wrap justify-center gap-1'>
+                            {pokemons.moves?.slice(0, 5).map(move => (
+                                <span
+                                    key={move.move.name}
+                                    className='text-xs font-mono rounded-full px-3 py-1 text-white'
+                                    style={{ backgroundColor: color.bg }}
+                                >
                                     {move.move.name}
-                                </li>
-                            </ol>
-                        ))
-                    }
-                </div>
-                <div className='card-atributes text-center border-4'>
-                    <h2>Stats Base</h2>
-                    <div className='flex items-center p-1'>
-                        <div>
-                            <p className='bg-poke-purple opacity-80 text-white rounded-sm border-2'>Hp</p>
-                        </div>
-                        <div className='ml-2 w-9/12'>
-                            <progress max="150" value={pokemons.stats[0]?.base_stat}></progress>
+                                </span>
+                            ))}
                         </div>
                     </div>
-                    <div className='flex items-center'>
-                        <div>
-                            <p className='bg-poke-purple opacity-80 text-white rounded-sm border-2 m-1'>Attack</p>
-                        </div>
-                        <div className='ml-2 w-9/12'>
-                            <progress max="150" value={pokemons.stats[1]?.base_stat}></progress>
-                        </div>
 
+                    <div className='bg-white rounded-2xl p-4 shadow-lg' style={{ borderTop: `4px solid ${color.bg}` }}>
+                        <h2 className='font-bold text-lg mb-2 text-center'>Stats Base</h2>
+                        <div className='space-y-2'>
+                            {[
+                                { label: 'HP', value: pokemons.stats[0]?.base_stat },
+                                { label: 'Attack', value: pokemons.stats[1]?.base_stat },
+                                { label: 'Defense', value: pokemons.stats[2]?.base_stat },
+                                { label: 'Speed', value: pokemons.stats[5]?.base_stat },
+                            ].map(stat => (
+                                <div key={stat.label} className='flex items-center gap-2'>
+                                    <span className='text-xs font-bold w-14 text-right'>{stat.label}</span>
+                                    <div className='flex-1 h-2 bg-gray-200 rounded-full overflow-hidden'>
+                                        <div
+                                            className='h-full rounded-full transition-all'
+                                            style={{
+                                                width: `${Math.min((stat.value || 0) / 150 * 100, 100)}%`,
+                                                backgroundColor: color.bg
+                                            }}
+                                        />
+                                    </div>
+                                    <span className='text-xs font-mono w-8'>{stat.value}</span>
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                    <div className='flex items-center'>
-                        <div>
-                            <p className='bg-poke-purple opacity-80 text-white rounded-sm border-2'>Defense</p>
-                        </div>
-                        <div className='ml-2 w-9/12'>
-                            <progress max="150" value={pokemons.stats[2]?.base_stat}></progress>
-                        </div>
-
-                    </div>
-                    <div className='flex items-center'>
-                        <div>
-                            <p className='bg-poke-purple opacity-80 text-white rounded-sm border-2 m-1'>Speed</p>
-                        </div>
-                        <div className='ml-2 w-9/12'>
-                            <progress max="150" value={pokemons.stats[5]?.base_stat}></progress>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
+                </section>
+            </div>
         </main>
-
     );
 };
 

@@ -1,0 +1,4 @@
+[build]
+  NODE_VERSION = "22"
+  command = "npm run build"
+  publish = "dist"
