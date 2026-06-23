@@ -13,18 +13,23 @@ const Pokedex = () => {
     const [pokemonSearch, setpokemonSearch] = useState("")
     const [page, setPage] = useState(1)
     const [totalCount, setTotalCount] = useState(0)
+    const [typeFilterUrl, setTypeFilterUrl] = useState(null)
+    const [filteredPokemon, setFilteredPokemon] = useState([])
     const navigate = useNavigate()
 
     const PerPage = 8
 
+    const isFiltering = typeFilterUrl !== null
+
     useEffect(() => {
+        if (isFiltering) return
         const offset = (page - 1) * PerPage
         axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${PerPage}`)
             .then(res => {
                 setPokemon(res.data.results)
                 setTotalCount(res.data.count)
             })
-    }, [page]);
+    }, [page, isFiltering]);
 
     useEffect(() => {
         axios.get('https://pokeapi.co/api/v2/type/')
@@ -32,12 +37,14 @@ const Pokedex = () => {
     }, []);
 
     const filterPokemones = url => {
-        axios.get(url)
-            .then(res => setPokemon(res.data.pokemon))
+        setTypeFilterUrl(url)
         setPage(1)
+        axios.get(url)
+            .then(res => setFilteredPokemon(res.data.pokemon))
     }
 
     const resetFilter = () => {
+        setTypeFilterUrl(null)
         setPage(1)
         const offset = 0
         axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${PerPage}`)
@@ -49,7 +56,13 @@ const Pokedex = () => {
 
     const search = () => navigate(`/poke/${pokemonSearch}`)
 
-    const totalPages = Math.ceil(totalCount / PerPage)
+    const filteredTotalPages = Math.ceil(filteredPokemon.length / PerPage)
+    const unfilteredTotalPages = Math.ceil(totalCount / PerPage)
+    const totalPages = isFiltering ? filteredTotalPages : unfilteredTotalPages
+
+    const paginatedPokemon = isFiltering
+        ? filteredPokemon.slice((page - 1) * PerPage, page * PerPage)
+        : pokemon
 
     return (
         <section className='min-h-screen'>
@@ -97,7 +110,7 @@ const Pokedex = () => {
                 </div>
 
                 <main className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 place-items-center'>
-                    {pokemon.map(poke => (
+                    {paginatedPokemon.map(poke => (
                         <PokemonInfo key={poke.name ? poke.name : poke.pokemon.name} url={poke.url ? poke.url : poke.pokemon.url} />
                     ))}
                 </main>
